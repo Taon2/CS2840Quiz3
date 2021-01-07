@@ -1,6 +1,6 @@
 // SE284 - Winter 2020/2021
 // Quiz - JavaScript Drawing
-// Name(s):  YOUR NAME(S) HERE
+// Name(s):  Christian Doughty, Anthony Lohmiller
 
 // Tell the code inspection tool that we're writing ES6 compliant code:
 // jshint esversion: 6
