@@ -75,13 +75,20 @@ class Drawing {
             };
             row.appendChild(button);
 
+            const rainbowButton = document.createElement("button");
+            rainbowButton.textContent = "Rainbow";
+            rainbowButton.onclick = () => {
+                rainbowClick();
+            }
+            row.appendChild(rainbowButton);
+
             drawing.appendChild(row);
         };
 
         const loadHex = (drawing, r, g, b) => {
             if (r === "" || r < 0 || r > 255 ||
-                 g === "" || g < 0 || g > 255 ||
-                 b === "" || b < 0 || b > 255) {
+                g === "" || g < 0 || g > 255 ||
+                b === "" || b < 0 || b > 255) {
                 alert("Input invalid. Only accepts values from 0-255.")
                 return
             }
@@ -110,6 +117,25 @@ class Drawing {
             row.id = "row" + id;
             return row;
         };
+
+        /**
+         * This is the rainbow button
+         */
+        const rainbowClick = async () => {
+            let rows = document.getElementsByClassName("row");
+            const timer = ms => new Promise(res => setTimeout(res, ms)); //this is used create a delay
+            for (let j = 1; j < rows.length; j++) { //starts at 1 to skip the control panel of buttons
+                let backgroundColor = colors[j % 6]; //this just cycles through the preset colors
+                // let backgroundColor = "red";
+                let cells = rows[j].children; // this gets all the cells in the row
+                await timer(200); //this is where the delay takes place
+                for (let i = 0; i < 100; i++) {
+                    cells[i].style.backgroundColor = backgroundColor;
+                }
+            }
+        }
+
+
 
         window.onload = () => {
             const drawings = document.getElementsByClassName("drawing");
