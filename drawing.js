@@ -54,8 +54,40 @@ class Drawing {
                 };
                 row.appendChild(button);
             });
+
+            const r = document.createElement("input")
+            const g = document.createElement("input")
+            const b = document.createElement("input")
+            r.id = "r"
+            g.id = "g"
+            b.id = "b"
+            row.appendChild(r);
+            row.appendChild(g);
+            row.appendChild(b);
+
+            const button = document.createElement("button");
+            button.innerText = "load rgb value";
+            button.onclick = () => {
+                loadHex(drawing,
+                    document.getElementById("r").value,
+                    document.getElementById("g").value,
+                    document.getElementById("b").value);
+            };
+            row.appendChild(button);
+
             drawing.appendChild(row);
         };
+
+        const loadHex = (drawing, r, g, b) => {
+            if (r === "" || r < 0 || r > 255 ||
+                 g === "" || g < 0 || g > 255 ||
+                 b === "" || b < 0 || b > 255) {
+                alert("Input invalid. Only accepts values from 0-255.")
+                return
+            }
+
+            drawing.selectedColor = 'rgb(' + r + ',' + g + ',' + b + ')'
+        }
 
 // Initializes the drawing and sets mouse events
 //   Param - drawing: the drawing element to init
